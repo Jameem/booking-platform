@@ -1,0 +1,35 @@
+{
+  "name": "booking-platform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3",
+    "firebase": "^8.1.2",
+    "firebase-admin": "^9.4.1",
+    "helmet": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jameem/booking-platform.git"
+  },
+  "author": "Jameem",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jameem/booking-platform/issues"
+  },
+  "homepage": "https://github.com/Jameem/booking-platform#readme"
+}
