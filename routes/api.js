@@ -24,12 +24,20 @@ router.get("/orders/:id", orderController.getOneOrder)
 // @route  POST api/orders
 // @desc   Create a new order
 // @access Public
-router.post("/orders", orderController.createOrder)
+router.post(
+  "/orders",
+  orderController.validate("createOrder"),
+  orderController.createOrder
+)
 
 // @route  PUT api/orders/id
 // @desc   Updates an order
 // @access Public
-router.put("/orders/:id", orderController.updateOrder)
+router.put(
+  "/orders/:id",
+  orderController.validate("updateOrder"),
+  orderController.updateOrder
+)
 
 // @route  DELETE api/orders/id
 // @desc   Deletes an order

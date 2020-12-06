@@ -1,3 +1,5 @@
+const { check, validationResult } = require("express-validator")
+
 const { db } = require("../firebase/initializeFirebase")
 
 // @desc   Gets the list of all Orders
@@ -42,6 +44,16 @@ exports.getOneOrder = async (req, res) => {
 // @desc   Create a new Order
 exports.createOrder = async (req, res) => {
   try {
+    // Validates the body with the validate middleware
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).send({
+        success: false,
+        message: "Input validation failed.",
+        errors: errors.array(),
+      })
+    }
+
     const newOrder = req.body
 
     const order = await db.ref("orders").push(newOrder)
@@ -64,6 +76,16 @@ exports.createOrder = async (req, res) => {
 // @desc   Update an Order with provided id
 exports.updateOrder = async (req, res) => {
   try {
+    // Validates the body with the validate middleware
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(422).send({
+        success: false,
+        message: "Input validation failed.",
+        errors: errors.array(),
+      })
+    }
+
     const { id } = req.params
     const params = req.body
 
@@ -72,7 +94,7 @@ exports.updateOrder = async (req, res) => {
         throw error
       }
 
-      return res.status(201).send({
+      return res.status(200).send({
         success: true,
         message: "Order updated successfully.",
       })
@@ -94,7 +116,7 @@ exports.deleteOrder = async (req, res) => {
 
     await db.ref("orders/" + id).remove()
 
-    return res.status(201).send({
+    return res.status(200).send({
       success: true,
       message: "Order deleted successfully.",
     })
@@ -105,5 +127,37 @@ exports.deleteOrder = async (req, res) => {
       message: "Failed to delete order.",
       error,
     })
+  }
+}
+
+exports.validate = (method) => {
+  switch (method) {
+    case "createOrder":
+      return [
+        check("title").not().isEmpty().withMessage("Title cannot be empty!"),
+        check("bookingDate")
+          .not()
+          .isEmpty()
+          .withMessage("Please provide a date!"),
+        check("customer").exists().withMessage("Please provide a customer!"),
+        check("customer.email")
+          .not()
+          .isEmpty()
+          .withMessage("Email cannot be empty!")
+          .isEmail()
+          .withMessage("Please provide a valid email!"),
+      ]
+
+    case "updateOrder":
+      return [
+        check("title").not().isEmpty().withMessage("Title cannot be empty!"),
+        check("bookingDate")
+          .not()
+          .isEmpty()
+          .withMessage("Please provide a date!"),
+      ]
+
+    default:
+      break
   }
 }
