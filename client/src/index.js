@@ -1,11 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
+import axios from "axios"
 
 import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { StateProvider } from "./StateProvider"
 import reducer, { initialState } from "./reducers"
+
+axios.defaults.baseURL = "http://localhost:8080"
 
 ReactDOM.render(
   <React.StrictMode>
