@@ -4,8 +4,16 @@ const { db } = require("../firebase/initializeFirebase")
 
 // @desc   Gets the list of all Orders
 exports.getOrders = async (req, res) => {
-  const orders = await db.ref("orders").once("value", (snapshot) => {
-    return snapshot.val()
+  let orders = []
+
+  // Fetching orders
+  await db.ref("orders").once("value", (snapshot) => {
+    // Refactoring the fetched objects to array
+    snapshot.forEach(function (item) {
+      let itemVal = item.val()
+      itemVal.id = item.key
+      orders.push(itemVal)
+    })
   })
 
   return res.status(200).send({
