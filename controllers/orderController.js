@@ -62,7 +62,24 @@ exports.createOrder = async (req, res) => {
       })
     }
 
-    const newOrder = req.body
+    const inputParams = req.body
+
+    // Refactoring the input data
+    const newOrder = {
+      title: inputParams.title,
+      bookingDate: inputParams.bookingDate,
+      address: {
+        city: inputParams.city,
+        country: inputParams.country,
+        zip: inputParams.zip,
+        street: inputParams.street,
+      },
+      customer: {
+        email: inputParams.email,
+        name: inputParams.name,
+        phone: inputParams.phone,
+      },
+    }
 
     const order = await db.ref("orders").push(newOrder)
 
@@ -95,9 +112,26 @@ exports.updateOrder = async (req, res) => {
     }
 
     const { id } = req.params
-    const params = req.body
+    const inputParams = req.body
 
-    await db.ref("orders/" + id).update(params, (error) => {
+    // Refactoring the input data
+    const newOrder = {
+      title: inputParams.title,
+      bookingDate: inputParams.bookingDate,
+      address: {
+        city: inputParams.city,
+        country: inputParams.country,
+        zip: inputParams.zip,
+        street: inputParams.street,
+      },
+      customer: {
+        email: inputParams.email,
+        name: inputParams.name,
+        phone: inputParams.phone,
+      },
+    }
+
+    await db.ref("orders/" + id).update(newOrder, (error) => {
       if (error) {
         throw error
       }
@@ -147,8 +181,7 @@ exports.validate = (method) => {
           .not()
           .isEmpty()
           .withMessage("Please provide a date!"),
-        check("customer").exists().withMessage("Please provide a customer!"),
-        check("customer.email")
+        check("email")
           .not()
           .isEmpty()
           .withMessage("Email cannot be empty!")
