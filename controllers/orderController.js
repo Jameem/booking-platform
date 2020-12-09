@@ -7,17 +7,20 @@ exports.getOrders = async (req, res) => {
   let orders = []
 
   // Fetching orders
-  await db.ref("orders").once("value", (snapshot) => {
-    // Refactoring the fetched objects to array
-    snapshot.forEach(function (item) {
-      let itemVal = item.val()
-      itemVal.id = item.key
-      orders.push(itemVal)
+  await db
+    .ref("orders")
+    .orderByChild("last_update")
+    .once("value", (snapshot) => {
+      // Refactoring the fetched objects to array
+      snapshot.forEach(function (item) {
+        let itemVal = item.val()
+        itemVal.id = item.key
+        orders.push(itemVal)
+      })
     })
-  })
 
   return res.status(200).send({
-    orders,
+    orders: orders.reverse(),
     success: true,
     message: "Orders fetched successfully.",
   })
@@ -69,15 +72,15 @@ exports.createOrder = async (req, res) => {
       title: inputParams.title,
       bookingDate: inputParams.bookingDate,
       address: {
-        city: inputParams.city,
-        country: inputParams.country,
-        zip: inputParams.zip,
-        street: inputParams.street,
+        city: inputParams.city || null,
+        country: inputParams.country || null,
+        zip: inputParams.zip || null,
+        street: inputParams.street || null,
       },
       customer: {
-        email: inputParams.email,
-        name: inputParams.name,
-        phone: inputParams.phone,
+        email: inputParams.email || null,
+        name: inputParams.name || null,
+        phone: inputParams.phone || null,
       },
     }
 
@@ -119,15 +122,15 @@ exports.updateOrder = async (req, res) => {
       title: inputParams.title,
       bookingDate: inputParams.bookingDate,
       address: {
-        city: inputParams.city,
-        country: inputParams.country,
-        zip: inputParams.zip,
-        street: inputParams.street,
+        city: inputParams.city || null,
+        country: inputParams.country || null,
+        zip: inputParams.zip || null,
+        street: inputParams.street || null,
       },
       customer: {
-        email: inputParams.email,
-        name: inputParams.name,
-        phone: inputParams.phone,
+        email: inputParams.email || null,
+        name: inputParams.name || null,
+        phone: inputParams.phone || null,
       },
     }
 
