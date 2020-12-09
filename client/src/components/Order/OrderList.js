@@ -117,7 +117,11 @@ function OrderList() {
                         <DeleteOutlineIcon
                           onClick={handleDelete}
                           id={id}
-                          style={{ fontSize: "medium", color: "#3c3a3a" }}
+                          style={{
+                            fontSize: "medium",
+                            color: "#3c3a3a",
+                            cursor: "pointer",
+                          }}
                         />
                       </a>
                     </div>

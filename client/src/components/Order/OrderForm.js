@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react"
-import { useHistory } from "react-router-dom"
+import { useHistory, Link } from "react-router-dom"
 import { useToasts } from "react-toast-notifications"
 import axios from "axios"
 import moment from "moment"
 import KeyboardBackspaceOutlinedIcon from "@material-ui/icons/KeyboardBackspaceOutlined"
+import EditIcon from "@material-ui/icons/Edit"
 
 import "bootstrap/dist/css/bootstrap.css"
 import "./Order.css"
@@ -89,9 +90,18 @@ function OrderForm({ mode, match }) {
       <div className="order">
         <div className="order__header">
           <h4>Create Order</h4>
-          <a onClick={() => history.goBack()} className="btn" title="Go Back">
-            <KeyboardBackspaceOutlinedIcon />
-          </a>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {mode == "view" && (
+              <Link to={`/order/edit/${id}`} className="btn btn-sm">
+                <EditIcon style={{ fontSize: "medium", color: "#3c3a3a" }} />
+                Edit
+              </Link>
+            )}
+
+            <a onClick={() => history.goBack()} className="btn" title="Go Back">
+              <KeyboardBackspaceOutlinedIcon />
+            </a>
+          </div>
         </div>
 
         <div className="order__form">
@@ -103,7 +113,6 @@ function OrderForm({ mode, match }) {
                     <small>Title</small>
                     <input
                       name="title"
-                      placeholder="title"
                       type="text"
                       className="form-control"
                       onChange={handleChange}
@@ -129,7 +138,6 @@ function OrderForm({ mode, match }) {
                     <small>Street</small>
                     <input
                       name="street"
-                      placeholder="street"
                       type="text"
                       className="form-control"
                       onChange={handleChange}
@@ -141,7 +149,6 @@ function OrderForm({ mode, match }) {
                     <small>City</small>
                     <input
                       name="city"
-                      placeholder="city"
                       type="text"
                       className="form-control"
                       onChange={handleChange}
@@ -152,7 +159,6 @@ function OrderForm({ mode, match }) {
                     <small>Zip</small>
                     <input
                       name="zip"
-                      placeholder="zip"
                       type="text"
                       className="form-control"
                       onChange={handleChange}
@@ -163,7 +169,6 @@ function OrderForm({ mode, match }) {
                     <small>Country</small>
                     <input
                       name="country"
-                      placeholder="country"
                       type="text"
                       className="form-control"
                       onChange={handleChange}
@@ -180,7 +185,6 @@ function OrderForm({ mode, match }) {
                   <small>Name</small>
                   <input
                     name="name"
-                    placeholder="name"
                     type="text"
                     className="form-control"
                     onChange={handleChange}
@@ -192,7 +196,6 @@ function OrderForm({ mode, match }) {
                   <small>Email</small>
                   <input
                     name="email"
-                    placeholder="email"
                     type="email"
                     className="form-control"
                     onChange={handleChange}
@@ -205,7 +208,6 @@ function OrderForm({ mode, match }) {
                   <small>Phone</small>
                   <input
                     name="phone"
-                    placeholder="phone"
                     type="text"
                     className="form-control"
                     onChange={handleChange}
