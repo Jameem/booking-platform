@@ -50,6 +50,7 @@
   border: 1px solid;
   margin-top: 10px;
   color: white;
+  font-size: small;
 }
 .login__registerButton {
   border-radius: 2px;
@@ -59,4 +60,5 @@
   margin-top: 10px;
   color: white;
   background: #2291b8;
+  font-size: small;
 }
