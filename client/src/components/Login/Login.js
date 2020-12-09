@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 
+import "bootstrap/dist/css/bootstrap.css"
 import "./Login.css"
 import { auth } from "../../firebase"
 import { useStateValue } from "../../StateProvider"
@@ -46,17 +47,19 @@ function Login() {
       <Link />
 
       <div className="login__container">
-        <h1>Sign In</h1>
+        <h4>Sign In</h4>
         <form>
-          <h5>E-mail</h5>
+          <small>E-mail</small>
           <input
+            className="form-control"
             type="email"
             value={email}
             required={true}
             onChange={(event) => setEmail(event.target.value)}
           />
-          <h5>Password</h5>
+          <small>Password</small>
           <input
+            className="form-control"
             type="password"
             value={password}
             required={true}
