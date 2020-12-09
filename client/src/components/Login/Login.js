@@ -44,12 +44,14 @@ function Login() {
           <input
             type="email"
             value={email}
+            required={true}
             onChange={(event) => setEmail(event.target.value)}
           />
           <h5>Password</h5>
           <input
             type="password"
             value={password}
+            required={true}
             onChange={(event) => setPassword(event.target.value)}
           />
           <button className="login__signInButton" onClick={login}>

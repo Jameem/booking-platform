@@ -6,6 +6,8 @@
 .order__header {
   box-shadow: 0px 1px lightgray;
   padding-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
 }
 .order__header > h3 {
   color: #3c3a3a;
@@ -41,4 +43,20 @@
   color: #3c3a3a;
   font-size: small;
   font-weight: 400;
+}
+
+label {
+  margin-bottom: 5px !important;
+}
+
+.order__formSectionHeader {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: transparent !important;
+  border: none;
+  font-style: italic;
 }
