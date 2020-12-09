@@ -1,13 +1,21 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { Link, useHistory } from "react-router-dom"
 
 import "./Login.css"
 import { auth } from "../../firebase"
+import { useStateValue } from "../../StateProvider"
 
 function Login() {
   const history = useHistory()
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [{ user }, dispatch] = useStateValue()
+
+  const token = localStorage.getItem("token")
+
+  useEffect(() => {
+    if (token) history.push("/")
+  }, [])
 
   const login = (e) => {
     e.preventDefault()
