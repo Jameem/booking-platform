@@ -25,6 +25,7 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan("dev"))
 
+// wire up the api route
 app.use("/api", apiRouter)
 
 //serve static assets in production

@@ -21,9 +21,11 @@ function OrderList() {
   useEffect(async () => {
     // Fetching the orders
     const results = await axios.get(`/api/orders`)
+    // setting the state
     setOrders(results.data.orders)
   }, [])
 
+  // Handle delete functionality
   const handleDelete = (event) => {
     // Fetching the id from the element
     const id = event.target.id

@@ -9,6 +9,7 @@ import { auth } from "../../firebase"
 function Header() {
   const [{ user }, dispatch] = useStateValue()
 
+  // Handle the signout
   const signOut = () => {
     if (user) auth.signOut()
   }

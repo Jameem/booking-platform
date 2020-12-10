@@ -39,6 +39,7 @@ function OrderForm({ mode, match }) {
     }
   }, [])
 
+  // Handle the change event for input
   const handleChange = (event) => {
     // Setting the form data
     setFormData({
@@ -47,6 +48,7 @@ function OrderForm({ mode, match }) {
     })
   }
 
+  // Handle form submit
   const handleSubmit = async (event) => {
     event.preventDefault()
 
@@ -56,11 +58,13 @@ function OrderForm({ mode, match }) {
     // Dynamically changing the api method according to the mode
     let url = "/api/orders/"
     let method = "post"
+
     if (mode == "edit") {
       url = url + id
       method = "put"
     }
 
+    // Invoking the api
     const results = await axios({
       method,
       url,

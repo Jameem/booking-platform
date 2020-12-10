@@ -15,13 +15,16 @@ function App() {
   const token = localStorage.getItem("token")
 
   useEffect(() => {
+    // Checks whether the user is logged in
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
+        // Dispatching the action
         dispatch({
           type: "SET_USER",
           user: authUser,
         })
       } else {
+        // Dispatching the action
         dispatch({
           type: "SET_USER",
           user: null,

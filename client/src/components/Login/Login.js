@@ -18,9 +18,11 @@ function Login() {
     if (token) history.push("/")
   }, [])
 
+  // Handle login functionality
   const login = (e) => {
     e.preventDefault()
 
+    // Sign in using firebase auth
     auth
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
@@ -29,9 +31,11 @@ function Login() {
       .catch((e) => alert(e.message))
   }
 
+  // Handle register functionality
   const register = (e) => {
     e.preventDefault()
 
+    // Sign up using firebase auth
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
