@@ -175,6 +175,7 @@ exports.deleteOrder = async (req, res) => {
   }
 }
 
+// @desc   Validating the inputs
 exports.validate = (method) => {
   switch (method) {
     case "createOrder":
