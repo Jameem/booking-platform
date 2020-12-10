@@ -42,9 +42,9 @@ function Login() {
 
   return (
     <div className="login">
-      <Link to="/"></Link>
-      <img className="login__logo" src="logo.png" alt="" />
-      <Link />
+      <Link to="/">
+        <img className="login__logo" src="logo.png" alt="" />
+      </Link>
 
       <div className="login__container">
         <h4>Sign In</h4>
