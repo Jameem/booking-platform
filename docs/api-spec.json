@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Booking Platform"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api"
+    }
+  ],
+  "paths": {
+    "/orders": {
+      "get": {
+        "description": "List all Orders",
+        "responses": {
+          "200": {
+            "description": "A array of Orders"
+          }
+        }
+      },
+      "post": {
+        "description": "Creates a new Order.",
+        "requestBody": {
+          "description": "Object with the order information",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the response with success message."
+          }
+        }
+      }
+    },
+    "/orders/{id}": {
+      "get": {
+        "description": "Returns an Order based on a id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the order to fetch",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns Order object"
+          }
+        }
+      },
+      "put": {
+        "description": "Updates an Order.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Order to update",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "description": "Object with the order information",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Returns the updated Order"
+          }
+        }
+      },
+      "delete": {
+        "description": "deletes a single Order based on the Id supplied",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id of the Order to delete",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Returns success"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Order": {
+        "type": "object",
+        "required": ["title", "bookingDate", "email"],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "bookingDate": {
+            "type": "timestamp"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "street": {
+            "type": "string"
+          },
+          "zip": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
