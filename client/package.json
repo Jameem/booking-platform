@@ -19,6 +19,7 @@
     "react-scripts": "4.0.1",
     "react-toast-notifications": "^2.4.0",
     "sweetalert": "^2.1.2",
+    "testing-library": "0.0.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
