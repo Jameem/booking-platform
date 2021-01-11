@@ -8,6 +8,6 @@ INSTRUCTIONS:-
 
 4. From the root directory, run "npm run dev"
 
-5. Navigate to http://localhost:3000/
+5. Navigate to http://localhost:3000
 
 The project is temporarily deployed on heroku at, https://blooming-eyrie-14776.herokuapp.com/
